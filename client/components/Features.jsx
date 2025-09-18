@@ -1,48 +1,49 @@
 import React from 'react'
-import { Eye, MessageCircle, BarChart3, Zap, Shield, Globe } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { Eye, Camera, BarChart3, Zap, Shield, CheckCircle } from 'lucide-react'
 
 const Features = () => {
   const features = [
     {
       id: 1,
       icon: Eye,
-      title: "AI Vision",
-      description: "ระบบวิเคราะห์ภาพด้วย AI ที่สามารถจดจำและวิเคราะห์วัตถุ สถานที่ และกิจกรรมต่างๆ ได้อย่างแม่นยำ",
+      title: "Computer Vision",
+      description: "ระบบวิเคราะห์ภาพมะม่วงด้วย AI ที่สามารถจดจำและวิเคราะห์ความสุกของมะม่วงได้อย่างแม่นยำ",
       color: "blue"
     },
     {
       id: 2,
-      icon: MessageCircle,
-      title: "AI Chat",
-      description: "แชทบอทอัจฉริยะที่เข้าใจภาษาไทยและตอบคำถามได้อย่างเป็นธรรมชาติ พร้อมให้คำแนะนำที่ถูกต้อง",
+      icon: Camera,
+      title: "Image Recognition",
+      description: "เทคโนโลยีจดจำภาพที่สามารถแยกแยะลักษณะของมะม่วงสุกและไม่สุกได้อย่างชัดเจน",
       color: "green"
     },
     {
       id: 3,
       icon: BarChart3,
-      title: "AI Analysis",
-      description: "วิเคราะห์ข้อมูลขนาดใหญ่ด้วย AI เพื่อค้นหาลักษณะและแนวโน้มที่ซ่อนอยู่ ช่วยในการตัดสินใจ",
+      title: "Smart Analysis",
+      description: "วิเคราะห์ข้อมูลภาพมะม่วงด้วย AI เพื่อประเมินระดับความสุกและให้คำแนะนำที่ถูกต้อง",
       color: "purple"
     },
     {
       id: 4,
       icon: Zap,
       title: "Real-time Processing",
-      description: "ประมวลผลข้อมูลแบบเรียลไทม์ ให้ผลลัพธ์ที่รวดเร็วและแม่นยำในทุกการใช้งาน",
+      description: "ประมวลผลภาพแบบเรียลไทม์ ให้ผลลัพธ์การวิเคราะห์ความสุกที่รวดเร็วและแม่นยำ",
       color: "yellow"
     },
     {
       id: 5,
       icon: Shield,
       title: "Privacy & Security",
-      description: "รักษาความปลอดภัยและความเป็นส่วนตัวของข้อมูลผู้ใช้ด้วยเทคโนโลยีการเข้ารหัสขั้นสูง",
+      description: "รักษาความปลอดภัยและความเป็นส่วนตัวของภาพที่อัปโหลดด้วยเทคโนโลยีการเข้ารหัสขั้นสูง",
       color: "red"
     },
     {
       id: 6,
-      icon: Globe,
-      title: "Multi-language Support",
-      description: "รองรับหลายภาษา รวมถึงภาษาไทย อังกฤษ และภาษาอื่นๆ เพื่อการใช้งานที่ครอบคลุม",
+      icon: CheckCircle,
+      title: "High Accuracy",
+      description: "ความแม่นยำสูงในการวิเคราะห์ความสุกของมะม่วง ด้วยเทคโนโลยี Machine Learning ที่ทันสมัย",
       color: "indigo"
     }
   ]
@@ -60,32 +61,32 @@ const Features = () => {
   }
 
   return (
-    <section className="py-16 bg-white">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-800 mb-4">
-            ฟีเจอร์ AI ที่ทรงพลัง
+    <section className="py-8 sm:py-12 lg:py-16 bg-white">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-3 sm:mb-4">
+            เทคโนโลยี AI สำหรับมะม่วง
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            สำรวจฟีเจอร์ AI ที่ล้ำสมัยของเรา ที่จะเปลี่ยนวิธีที่คุณทำงานและเรียนรู้
+          <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-2xl mx-auto px-4">
+            สำรวจเทคโนโลยี AI ที่ล้ำสมัยของเรา ที่จะเปลี่ยนวิธีที่คุณตรวจสอบความสุกของมะม่วง
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           {features.map((feature) => {
             const IconComponent = feature.icon
             return (
               <div
                 key={feature.id}
-                className="bg-gray-50 rounded-lg p-6 hover:shadow-lg transition duration-300 group"
+                className="bg-gray-50 rounded-lg p-4 sm:p-6 hover:shadow-lg transition duration-300 group"
               >
-                <div className={`w-12 h-12 rounded-lg ${getColorClasses(feature.color)} flex items-center justify-center mb-4 group-hover:scale-110 transition duration-300`}>
-                  <IconComponent className="w-6 h-6" />
+                <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-lg ${getColorClasses(feature.color)} flex items-center justify-center mb-3 sm:mb-4 group-hover:scale-110 transition duration-300`}>
+                  <IconComponent className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-800 mb-3">
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-2 sm:mb-3">
                   {feature.title}
                 </h3>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                   {feature.description}
                 </p>
               </div>
@@ -93,13 +94,16 @@ const Features = () => {
           })}
         </div>
 
-        <div className="text-center mt-12">
-          <p className="text-gray-600 mb-6">
-            พร้อมที่จะสัมผัสประสบการณ์ AI ที่แตกต่างแล้วหรือยัง?
+        <div className="text-center mt-8 sm:mt-12">
+          <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 px-4">
+            พร้อมที่จะตรวจสอบความสุกของมะม่วงด้วย AI แล้วหรือยัง?
           </p>
-          <button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 px-8 rounded-lg transition duration-300 ease-in-out transform hover:scale-105">
-            เริ่มใช้งานทันที
-          </button>
+          <Link 
+            to="/ai" 
+            className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 px-6 sm:px-8 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 text-sm sm:text-base inline-block text-center"
+          >
+            เริ่มตรวจสอบมะม่วง
+          </Link>
         </div>
       </div>
     </section>
