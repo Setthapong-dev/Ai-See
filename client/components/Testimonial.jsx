@@ -91,7 +91,7 @@ const Testimonial = () => {
 
         {/* Closing Section */}
         <div className="text-center mt-8 sm:mt-12 lg:mt-16">
-          <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-4 sm:p-6 lg:p-8 max-w-4xl mx-auto">
+          <div className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-2xl p-4 sm:p-6 lg:p-8 max-w-4xl mx-auto">
             <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-3 sm:mb-4">
               พร้อมที่จะตรวจสอบมะม่วงแล้วหรือยัง?
             </h3>

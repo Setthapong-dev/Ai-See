@@ -30,7 +30,7 @@ const About = () => {
   ]
 
   return (
-    <section className="py-8 sm:py-12 lg:py-16 bg-gradient-to-br from-gray-50 to-blue-50">
+    <section className="py-8 sm:py-12 lg:py-16 bg-gradient-to-br from-yellow-50 to-orange-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-center">
           {/* Content Section */}
@@ -50,14 +50,14 @@ const About = () => {
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               <div className="flex items-center">
-                <div className="w-6 h-6 sm:w-8 sm:h-8 bg-green-100 rounded-full flex items-center justify-center mr-2 sm:mr-3">
-                  <Brain className="w-3 h-3 sm:w-4 sm:h-4 text-green-600" />
+                <div className="w-6 h-6 sm:w-8 sm:h-8 bg-blue-100 rounded-full flex items-center justify-center mr-2 sm:mr-3">
+                  <Brain className="w-3 h-3 sm:w-4 sm:h-4 text-blue-600" />
                 </div>
                 <span className="text-xs sm:text-sm text-gray-700 font-medium">Computer Vision</span>
               </div>
               <div className="flex items-center">
-                <div className="w-6 h-6 sm:w-8 sm:h-8 bg-blue-100 rounded-full flex items-center justify-center mr-2 sm:mr-3">
-                  <Users className="w-3 h-3 sm:w-4 sm:h-4 text-blue-600" />
+                <div className="w-6 h-6 sm:w-8 sm:h-8 bg-green-100 rounded-full flex items-center justify-center mr-2 sm:mr-3">
+                  <Users className="w-3 h-3 sm:w-4 sm:h-4 text-green-600" />
                 </div>
                 <span className="text-xs sm:text-sm text-gray-700 font-medium">ทีมผู้เชี่ยวชาญ</span>
               </div>
@@ -68,8 +68,8 @@ const About = () => {
                 <span className="text-xs sm:text-sm text-gray-700 font-medium">เข้าใจมะม่วงไทย</span>
               </div>
               <div className="flex items-center">
-                <div className="w-6 h-6 sm:w-8 sm:h-8 bg-yellow-100 rounded-full flex items-center justify-center mr-2 sm:mr-3">
-                  <Award className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-600" />
+                <div className="w-6 h-6 sm:w-8 sm:h-8 bg-orange-100 rounded-full flex items-center justify-center mr-2 sm:mr-3">
+                  <Award className="w-3 h-3 sm:w-4 sm:h-4 text-orange-600" />
                 </div>
                 <span className="text-xs sm:text-sm text-gray-700 font-medium">แม่นยำสูง</span>
               </div>
@@ -87,7 +87,7 @@ const About = () => {
                     className="bg-white rounded-lg p-3 sm:p-4 lg:p-6 shadow-lg hover:shadow-xl transition duration-300"
                   >
                     <div className="flex items-center mb-2 sm:mb-3">
-                      <div className="w-8 h-8 sm:w-10 sm:h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-2 sm:mr-3">
+                      <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-lg flex items-center justify-center mr-2 sm:mr-3">
                         <IconComponent className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
                       </div>
                       <div>

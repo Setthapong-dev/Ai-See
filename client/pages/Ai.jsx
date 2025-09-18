@@ -33,7 +33,7 @@ const Ai = () => {
   return (
     <>
       <Header />
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center py-8 md:mt-10">
+      <div className="min-h-screen bg-gradient-to-br from-yellow-50 to-orange-50 flex items-center justify-center py-8 md:mt-10">
         <div className="max-w-4xl mx-auto px-4 w-full">
           <div className="bg-white rounded-lg shadow-lg p-8">
             <h1 className="text-3xl font-bold text-center text-gray-800 mb-8">
@@ -77,7 +77,7 @@ const Ai = () => {
                   <button
                     onClick={handleSubmit}
                     disabled={!selectedImage || isAnalyzing}
-                    className="bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white px-8 py-3 rounded-lg font-semibold flex items-center gap-2 mx-auto transition-colors"
+                    className="bg-gradient-to-r from-yellow-600 to-orange-600 hover:from-yellow-700 hover:to-orange-700 disabled:bg-gray-400 text-white px-8 py-3 rounded-lg font-semibold flex items-center gap-2 mx-auto transition-colors"
                   >
                     <Camera className="w-5 h-5" />
                     {isAnalyzing ? 'กำลังวิเคราะห์...' : 'วิเคราะห์ภาพ'}
@@ -97,7 +97,7 @@ const Ai = () => {
                   <div className="flex items-center justify-center">
                     {isAnalyzing ? (
                       <div className="flex items-center gap-3">
-                        <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
+                        <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-yellow-600"></div>
                         <p className="text-gray-700 text-lg">{content}</p>
                       </div>
                     ) : (
