@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Home, Bot, Menu, X } from 'lucide-react'
+import AISeeLogo from '../src/assets/AI-See_logo.svg'
 
 const Header = () => {
   const location = useLocation()
@@ -35,9 +36,11 @@ const Header = () => {
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             className="flex items-center space-x-2 hover:opacity-80 transition duration-300"
           >
-            <div className="w-8 h-8 bg-gradient-to-r from-yellow-600 to-orange-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">AI</span>
-            </div>
+            <img 
+              src={AISeeLogo} 
+              alt="AI-See Logo" 
+              className="w-8 h-8"
+            />
             <span className={`text-xl font-bold transition-colors duration-300 ${
               isScrolled ? 'text-gray-800' : 'text-gray-800'
             }`}>AI-See</span>

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Github, Twitter, Mail, Heart } from 'lucide-react'
+import AISeeLogo from '../src/assets/AI-See_logo.svg'
 
 const Footer = () => {
   return (
@@ -10,9 +11,11 @@ const Footer = () => {
           {/* Brand Section */}
           <div className="col-span-1 md:col-span-2">
             <Link to="/" className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 bg-gradient-to-r from-yellow-600 to-orange-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">AI</span>
-              </div>
+              <img 
+                src={AISeeLogo} 
+                alt="AI-See Logo" 
+                className="w-8 h-8"
+              />
               <span className="text-xl font-bold">AI-See</span>
             </Link>
             <p className="text-gray-400 mb-6 max-w-md">
