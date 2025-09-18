@@ -30,7 +30,7 @@ const Features = () => {
       icon: Zap,
       title: "Real-time Processing",
       description: "ประมวลผลภาพแบบเรียลไทม์ ให้ผลลัพธ์การวิเคราะห์ความสุกที่รวดเร็วและแม่นยำ",
-      color: "yellow"
+      color: "orange"
     },
     {
       id: 5,
@@ -53,8 +53,8 @@ const Features = () => {
       blue: "text-blue-600 bg-blue-100",
       green: "text-green-600 bg-green-100",
       purple: "text-purple-600 bg-purple-100",
-      yellow: "text-yellow-600 bg-yellow-100",
       red: "text-red-600 bg-red-100",
+      orange: "text-orange-600 bg-orange-100",
       indigo: "text-indigo-600 bg-indigo-100"
     }
     return colorMap[color] || colorMap.blue
@@ -100,7 +100,7 @@ const Features = () => {
           </p>
           <Link 
             to="/ai" 
-            className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 px-6 sm:px-8 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 text-sm sm:text-base inline-block text-center"
+            className="w-full sm:w-auto bg-gradient-to-r from-yellow-600 to-orange-600 hover:from-yellow-700 hover:to-orange-700 text-white font-semibold py-3 px-6 sm:px-8 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 text-sm sm:text-base inline-block text-center"
           >
             เริ่มตรวจสอบมะม่วง
           </Link>

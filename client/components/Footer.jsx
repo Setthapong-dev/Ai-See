@@ -10,7 +10,7 @@ const Footer = () => {
           {/* Brand Section */}
           <div className="col-span-1 md:col-span-2">
             <Link to="/" className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 bg-gradient-to-r from-yellow-600 to-orange-600 rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-sm">AI</span>
               </div>
               <span className="text-xl font-bold">AI-See</span>
@@ -19,13 +19,13 @@ const Footer = () => {
               แอปพลิเคชัน AI ที่ช่วยคัดผลไม้ด้วยการวิเคราะห์ภาพ
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-white transition duration-300">
+              <a href="#" className="text-gray-400 hover:text-gray-300 transition duration-300">
                 <Github className="w-5 h-5" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-white transition duration-300">
+              <a href="#" className="text-gray-400 hover:text-blue-400 transition duration-300">
                 <Twitter className="w-5 h-5" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-white transition duration-300">
+              <a href="#" className="text-gray-400 hover:text-red-400 transition duration-300">
                 <Mail className="w-5 h-5" />
               </a>
             </div>
