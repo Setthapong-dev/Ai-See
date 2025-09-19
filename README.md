@@ -2,6 +2,9 @@
 
 แอปพลิเคชันตรวจสอบความสุกของมะม่วงด้วยเทคโนโลยี AI ที่พัฒนาด้วย React และ Vite
 
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Visit%20Now-green?style=for-the-badge&logo=vercel)](https://ai-see.vercel.app/)
+[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://ai-see.vercel.app/)
+
 ## 🌟 Features
 
 - **AI Image Analysis**: วิเคราะห์ภาพมะม่วงเพื่อตรวจสอบความสุก
@@ -82,7 +85,8 @@ npm run dev
 ## 🎯 How to Use
 
 ### 1. เข้าหน้าเว็บ
-- เปิดเบราว์เซอร์ไปที่ `http://localhost:5173`
+- **🌐 Live Demo**: เปิดเบราว์เซอร์ไปที่ [https://ai-see.vercel.app/](https://ai-see.vercel.app/)
+- **💻 Local Development**: เปิดเบราว์เซอร์ไปที่ `http://localhost:5173`
 - คลิกที่ "เริ่มใช้งาน" หรือไปที่ `/ai`
 
 ### 2. อัปโหลดรูปภาพ
@@ -135,6 +139,16 @@ export default defineConfig({
 - เพิ่มหน้าใหม่ในโฟลเดอร์ `pages/`
 - อัปเดต routing ใน `src/App.jsx`
 
+## 🌐 Live Demo
+
+**🚀 แอปพลิเคชันพร้อมใช้งานแล้ว!**
+
+👉 **[https://ai-see.vercel.app/](https://ai-see.vercel.app/)** 👈
+
+ทดลองใช้งานการตรวจสอบความสุกของมะม่วงด้วย AI ได้ทันที!
+
+---
+
 ## 🚀 Deployment
 
 ### Build for Production
@@ -145,7 +159,7 @@ npm run build
 ไฟล์ที่ build จะอยู่ในโฟลเดอร์ `dist/`
 
 ### Deploy to Static Hosting
-- **Vercel**: `vercel --prod`
+- **Vercel**: `vercel --prod` ✅ **Deployed!**
 - **Netlify**: อัปโหลดโฟลเดอร์ `dist/`
 - **GitHub Pages**: ใช้ GitHub Actions
 
@@ -214,8 +228,8 @@ npm run lint:fix
 ## 📞 Contact
 
 - **Email**: your.email@example.com
-- **GitHub**: [@yourusername](https://github.com/yourusername)
-- **Website**: [yourwebsite.com](https://yourwebsite.com)
+- **GitHub**: [@BossSetthapong](https://github.com/Setthapong-dev)
+- **Live Demo**: [https://ai-see.vercel.app/](https://ai-see.vercel.app/)
 
 ## 🙏 Acknowledgments
 
