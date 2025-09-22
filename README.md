@@ -26,24 +26,28 @@
 
 ```
 client/
-├── components/           # React Components
-│   ├── About.jsx        # หน้าเกี่ยวกับ
-│   ├── AnalysisResult.jsx # แสดงผลการวิเคราะห์
-│   ├── Features.jsx     # คุณสมบัติ
-│   ├── Footer.jsx       # Footer
-│   ├── Header.jsx       # Header
-│   ├── Hero.jsx         # Hero Section
-│   ├── ImageUpload.jsx  # อัปโหลดรูปภาพ
-│   └── Testimonial.jsx  # คำรับรอง
-├── pages/               # หน้าเว็บ
-│   ├── Ai.jsx          # หน้า AI Analysis
-│   └── Home.jsx        # หน้าหลัก
 ├── src/                # Source Code
-│   ├── App.jsx         # Main App Component
-│   ├── main.jsx        # Entry Point
-│   └── index.css       # Global Styles
-├── public/             # Static Assets
-└── dist/               # Build Output
+│   ├── components/     # React Components
+│   │   ├── About.jsx        # หน้าเกี่ยวกับ
+│   │   ├── Features.jsx     # คุณสมบัติ
+│   │   ├── Footer.jsx       # Footer
+│   │   ├── Header.jsx       # Header
+│   │   ├── Hero.jsx         # Hero Section
+│   │   └── Testimonial.jsx  # คำรับรอง
+│   ├── pages/         # หน้าเว็บ
+│   │   ├── Ai.jsx          # หน้า AI Analysis
+│   │   └── Home.jsx        # หน้าหลัก
+│   ├── assets/        # Static Assets
+│   │   ├── AI-See_logo.svg # Logo
+│   │   └── react.svg       # React Logo
+│   ├── App.jsx        # Main App Component
+│   ├── main.jsx       # Entry Point
+│   └── index.css      # Global Styles
+├── public/            # Public Assets
+│   ├── AI-See_logo.svg
+│   └── vite.svg
+├── dist/              # Build Output
+└── package.json       # Dependencies
 ```
 
 ## 🛠️ Installation & Setup
