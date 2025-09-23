@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Home, Bot, Menu, X } from 'lucide-react'
-import AISeeLogo from '../src/assets/AI-See_logo.svg'
+import AISeeLogo from '../assets/AI-See_logo.svg'
 
 const Header = () => {
   const location = useLocation()

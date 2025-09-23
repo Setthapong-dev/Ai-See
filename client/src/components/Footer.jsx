@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Github, Twitter, Mail, Heart } from 'lucide-react'
-import AISeeLogo from '../src/assets/AI-See_logo.svg'
+import AISeeLogo from '../assets/AI-See_logo.svg'
 
 const Footer = () => {
   return (
