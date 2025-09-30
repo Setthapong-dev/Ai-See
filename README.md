@@ -231,7 +231,7 @@ npm run lint:fix
 
 ## 📞 Contact
 
-- **Email**: your.email@example.com
+- **Email**: setthapong.thansirisuntorn@gmail.com
 - **GitHub**: [@BossSetthapong](https://github.com/Setthapong-dev)
 - **Live Demo**: [https://ai-see.vercel.app/](https://ai-see.vercel.app/)
 
