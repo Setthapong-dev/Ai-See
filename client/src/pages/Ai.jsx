@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
@@ -6,6 +6,7 @@ import { Camera } from 'lucide-react'
 
 const Ai = () => {
   const [selectedImage, setSelectedImage] = useState(null)
+  const [previewUrl, setPreviewUrl] = useState('')
   const [content, setContent] = useState('')
   const [isAnalyzing, setIsAnalyzing] = useState(false)
 
@@ -23,8 +24,18 @@ const Ai = () => {
     if (file) {
       setSelectedImage(file)
       setContent('') // รีเซ็ตผลลัพธ์เมื่ออัปโหลดภาพใหม่
+      const objectUrl = URL.createObjectURL(file)
+      setPreviewUrl(objectUrl)
     }
   }
+
+  useEffect(() => {
+    return () => {
+      if (previewUrl) {
+        URL.revokeObjectURL(previewUrl)
+      }
+    }
+  }, [previewUrl])
 
   const handleSubmit = async () => {
     if (!selectedImage) return
@@ -90,10 +101,21 @@ const Ai = () => {
                 </div>
                 
                 {selectedImage && (
-                  <div className="mt-4 p-4 bg-green-50 border border-green-200 rounded-lg">
-                    <p className="text-green-700">
-                      ✓ เลือกไฟล์แล้ว: {selectedImage.name}
-                    </p>
+                  <div className="mt-4">
+                    <div className="w-full overflow-hidden rounded-lg border border-gray-200 bg-white">
+                      {previewUrl && (
+                        <img
+                          src={previewUrl}
+                          alt="ตัวอย่างรูปภาพ"
+                          className="max-h-72 w-full object-contain bg-gray-50"
+                        />
+                      )}
+                    </div>
+                    <div className="mt-2 p-3 bg-green-50 border border-green-200 rounded-lg">
+                      <p className="text-green-700 truncate">
+                        ✓ เลือกไฟล์แล้ว: {selectedImage.name}
+                      </p>
+                    </div>
                   </div>
                 )}
                 
