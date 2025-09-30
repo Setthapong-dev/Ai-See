@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import { Camera } from 'lucide-react'
@@ -8,6 +9,15 @@ const Ai = () => {
   const [content, setContent] = useState('')
   const [isAnalyzing, setIsAnalyzing] = useState(false)
 
+  const fileToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader()
+      reader.onload = () => resolve(reader.result)
+      reader.onerror = reject
+      reader.readAsDataURL(file)
+    })
+  }
+
   const handleImageUpload = (event) => {
     const file = event.target.files[0]
     if (file) {
@@ -16,17 +26,31 @@ const Ai = () => {
     }
   }
 
-  const handleSubmit = () => {
-    if (selectedImage) {
-      setIsAnalyzing(true)
-      setContent('กำลังวิเคราะห์ความสุกของมะม่วง...')
-      
-      // จำลองการประมวลผล AI สำหรับตรวจสอบความสุกของมะม่วง
-      setTimeout(() => {
-        const isRipe = Math.random() > 0.5 // จำลองผลลัพธ์แบบสุ่ม
-        setContent(isRipe ? 'มะม่วงสุกแล้ว' : 'มะม่วงยังไม่สุก')
-        setIsAnalyzing(false)
-      }, 2000)
+  const handleSubmit = async () => {
+    if (!selectedImage) return
+    setIsAnalyzing(true)
+    setContent('กำลังวิเคราะห์ความสุกของมะม่วง...')
+
+    try {
+      const base64 = await fileToBase64(selectedImage)
+      const res = await axios.post('http://localhost:5000/predict', {
+        image_base64: base64,
+      }, {
+        headers: { 'Content-Type': 'application/json' },
+      })
+
+      const label = res?.data?.class
+      const confidence = res?.data?.confidence
+      if (label) {
+        setContent(`${label} (confidence: ${(confidence * 100).toFixed(1)}%)`)
+      } else {
+        setContent('ไม่พบผลลัพธ์จากเซิร์ฟเวอร์')
+      }
+    } catch (err) {
+      const msg = err?.response?.data?.error || err?.message || 'เกิดข้อผิดพลาดไม่ทราบสาเหตุ'
+      setContent(`ผิดพลาด: ${msg}`)
+    } finally {
+      setIsAnalyzing(false)
     }
   }
 
