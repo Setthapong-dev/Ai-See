@@ -44,7 +44,8 @@ const Ai = () => {
 
     try {
       const base64 = await fileToBase64(selectedImage)
-      const res = await axios.post('http://localhost:5000/predict', {
+      const predictUrl = import.meta.env.VITE_PREDICT_URL || 'http://localhost:5000/predict'
+      const res = await axios.post(predictUrl, {
         image_base64: base64,
       }, {
         headers: { 'Content-Type': 'application/json' },
