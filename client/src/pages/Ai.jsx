@@ -44,7 +44,7 @@ const Ai = () => {
 
     try {
       const base64 = await fileToBase64(selectedImage)
-      const predictUrl = 'https://ai-see.onrender.com/predict'
+      const predictUrl = 'http://localhost:5000/predict'
       const res = await axios.post(predictUrl, {
         image_base64: base64,
       }, {
