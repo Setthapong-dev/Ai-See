@@ -55,7 +55,7 @@ const Ai = () => {
       const predictUrl = '/api/predict'
       console.log('Sending request to:', predictUrl)
       
-      const res = await axios.post(predictUrl, {
+      const res = await axios.post('https://g8tuesa.consolutechcloud.com/backend/predict' || predictUrl, {
         image_base64: base64,
       }, {
         headers: { 'Content-Type': 'application/json' },
