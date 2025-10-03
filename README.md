@@ -23,29 +23,42 @@
 ## 📁 Project Structure
 
 ```
-client/
-├── src/                # Source Code
-│   ├── components/     # React Components
-│   │   ├── About.jsx        # หน้าเกี่ยวกับ
-│   │   ├── Features.jsx     # คุณสมบัติ
-│   │   ├── Footer.jsx       # Footer
-│   │   ├── Header.jsx       # Header
-│   │   ├── Hero.jsx         # Hero Section
-│   │   └── Testimonial.jsx  # คำรับรอง
-│   ├── pages/         # หน้าเว็บ
-│   │   ├── Ai.jsx          # หน้า AI Analysis
-│   │   └── Home.jsx        # หน้าหลัก
-│   ├── assets/        # Static Assets
-│   │   ├── AI-See_logo.svg # Logo
-│   │   └── react.svg       # React Logo
-│   ├── App.jsx        # Main App Component
-│   ├── main.jsx       # Entry Point
-│   └── index.css      # Global Styles
-├── public/            # Public Assets
-│   ├── AI-See_logo.svg
-│   └── vite.svg
-├── dist/              # Build Output
-└── package.json       # Dependencies
+Ai-See/
+├── client/
+│   ├── src/                    # Source Code
+│   │   ├── components/         # React Components
+│   │   │   ├── About.jsx
+│   │   │   ├── Features.jsx
+│   │   │   ├── Footer.jsx
+│   │   │   ├── Header.jsx
+│   │   │   ├── Hero.jsx
+│   │   │   └── Testimonial.jsx
+│   │   ├── pages/             # หน้าเว็บ
+│   │   │   ├── Ai.jsx         # หน้า AI Analysis
+│   │   │   └── Home.jsx       # หน้าหลัก
+│   │   ├── assets/            # Static Assets
+│   │   │   ├── AI-See_logo.svg
+│   │   │   └── react.svg
+│   │   ├── App.jsx            # Main App Component
+│   │   ├── main.jsx           # Entry Point
+│   │   └── index.css          # Global Styles
+│   ├── public/                # Public Assets
+│   │   ├── AI-See_logo.svg
+│   │   └── vite.svg
+│   ├── dist/                  # Build Output
+│   ├── vite.config.js
+│   ├── eslint.config.js
+│   ├── index.html
+│   └── package.json           # Dependencies
+├── server/
+│   ├── images/                # ชุดภาพสำหรับเทรน/ทดสอบโมเดล
+│   ├── labels.csv             # ป้ายกำกับข้อมูลภาพ
+│   ├── mango_cnn.h5           # โมเดล TensorFlow/Keras
+│   ├── requirements.txt       # Python dependencies
+│   ├── server.py              # Flask API server
+│   └── train.ipynb            # โน้ตบุ๊กการฝึกโมเดล
+├── .gitignore
+└── README.md
 ```
 
 ## 🛠️ Installation & Setup
