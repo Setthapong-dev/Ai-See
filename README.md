@@ -15,12 +15,10 @@
 
 ## 🚀 Tech Stack
 
-- **Frontend**: React 19.1.1
-- **Build Tool**: Vite 7.1.2
-- **Styling**: Tailwind CSS 4.1.13
-- **Icons**: Lucide React
-- **Routing**: React Router DOM 7.9.1
-- **Linting**: ESLint
+- **Frontend**: React 19.1.1, Vite 7.1.2, Tailwind CSS 4.1.13, Lucide React, React Router DOM 7.9.1, ESLint
+- **Backend**: Python, Flask, Flask-CORS
+- **AI/ML**: TensorFlow/Keras (`mango_cnn.h5`)
+- **Infra**: Gunicorn (production), Docker (optional)
 
 ## 📁 Project Structure
 
@@ -62,18 +60,40 @@ git clone <repository-url>
 cd Ai-See
 ```
 
-### 2. Install Dependencies
+### 2. Install Frontend Dependencies
 ```bash
 cd client
 npm install
 ```
 
-### 3. Start Development Server
+### 3. Install Backend Dependencies
+เปิดเทอร์มินัลใหม่แล้วรัน:
 ```bash
+cd server
+python -m venv .venv
+# Windows PowerShell
+.venv\Scripts\Activate
+# หรือ Git Bash / WSL
+source .venv/bin/activate
+
+pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+### 4. Start Backend Server (Flask)
+```bash
+cd server
+python server.py
+```
+เซิร์ฟเวอร์จะรันที่ `http://localhost:5000`
+
+### 5. Start Frontend Dev Server
+```bash
+cd client
 npm run dev
 ```
 
-แอปจะทำงานที่ `http://localhost:5173`
+แอปจะรันที่ `http://localhost:5173`
 
 ## 📋 Available Scripts
 
@@ -109,7 +129,7 @@ npm run dev
 สร้างไฟล์ `.env` ในโฟลเดอร์ `client/`:
 
 ```env
-VITE_API_URL=http://localhost:8000
+VITE_API_URL=http://localhost:5000
 VITE_APP_NAME=Ai-See
 ```
 
@@ -155,6 +175,15 @@ export default defineConfig({
 
 ## 🚀 Deployment
 
+### Backend (Flask) Production
+- แนะนำให้รันผ่าน Gunicorn (Linux) หรือบริการโฮสต์ที่รองรับ Python
+
+ตัวอย่าง (Linux):
+```bash
+cd server
+gunicorn -w 2 -b 0.0.0.0:5000 server:app
+```
+
 ### Build for Production
 ```bash
 npm run build
@@ -175,6 +204,64 @@ docker build -t ai-see .
 # Run container
 docker run -p 80:80 ai-see
 ```
+
+หมายเหตุ: หากต้องการรวม Backend+Frontend ใน Docker ให้จัดทำ `Dockerfile`/`docker-compose.yml` แยกบริการ หรือ build frontend แล้วเสิร์ฟ static ผ่าน nginx และ reverse-proxy ไปยัง Flask
+
+---
+
+## 🧩 API Documentation
+
+### Base URL
+- Local: `http://localhost:5000`
+- Production: ดูจากสภาพแวดล้อมจริง
+
+### GET `/`
+ทดสอบสถานะ API
+
+Response ตัวอย่าง:
+```json
+{ "message": "API is running" }
+```
+
+### POST `/predict`
+รับรูปภาพมะม่วงแบบ Base64 และส่งคืนคลาสความสุกพร้อมความมั่นใจ
+
+Request (JSON):
+```json
+{
+  "image_base64": "data:image/jpeg;base64,/9j/4AAQSkZJRg..."
+}
+```
+
+Response (JSON):
+```json
+{
+  "class": "ripe mango",
+  "confidence": 0.9721
+}
+```
+
+ตัวอย่างทดสอบด้วย `curl`:
+```bash
+BASE64=$(node -e "const fs=require('fs');const b=fs.readFileSync('sample.jpg').toString('base64');console.log('data:image/jpeg;base64,'+b)")
+curl -X POST http://localhost:5000/predict \
+  -H "Content-Type: application/json" \
+  -d "{\"image_base64\": \"$BASE64\"}"
+```
+
+ข้อกำหนดอินพุต:
+- รองรับ JPG/PNG/GIF (ระบบจะรีไซส์เป็น 128x128 และสเกลค่าเป็น 0-1)
+
+---
+
+## 🧠 Model & Training
+- ไฟล์โมเดล: `server/mango_cnn.h5`
+- ชุดข้อมูลตัวอย่าง: `server/images/` และป้ายกำกับ `server/labels.csv`
+- โน้ตบุ๊กการฝึก: `server/train.ipynb`
+
+คำแนะนำ:
+- หากแก้ไขโครงสร้างโมเดล ให้บันทึกไฟล์ `.h5` ใหม่และรีสตาร์ตเซิร์ฟเวอร์
+- ตรวจสอบให้แน่ใจว่าเลย์เอาต์อินพุต (128x128x3) ตรงกับขั้นตอนพรีโปรเซส
 
 ## 🧪 Testing
 
