@@ -43,13 +43,26 @@ const Ai = () => {
     setContent('กำลังวิเคราะห์ความสุกของมะม่วง...')
 
     try {
+      // ตรวจสอบขนาดไฟล์ก่อนส่ง
+      if (selectedImage.size > 10 * 1024 * 1024) { // 10MB
+        throw new Error('ขนาดไฟล์ใหญ่เกินไป กรุณาเลือกรูปภาพที่มีขนาดไม่เกิน 10MB')
+      }
+
       const base64 = await fileToBase64(selectedImage)
-      const predictUrl = 'http://localhost:5000/predict'
+      console.log('Converted to base64, length:', base64.length)
+      
+      // ใช้ proxy endpoint แทนการเรียก API โดยตรง
+      const predictUrl = '/api/predict'
+      console.log('Sending request to:', predictUrl)
+      
       const res = await axios.post(predictUrl, {
         image_base64: base64,
       }, {
         headers: { 'Content-Type': 'application/json' },
+        timeout: 30000, // timeout 30 วินาที
       })
+      
+      console.log('API Response:', res.data)
 
       const label = res?.data?.class
       const confidence = res?.data?.confidence
@@ -59,8 +72,23 @@ const Ai = () => {
         setContent('ไม่พบผลลัพธ์จากเซิร์ฟเวอร์')
       }
     } catch (err) {
-      const msg = err?.response?.data?.error || err?.message || 'เกิดข้อผิดพลาดไม่ทราบสาเหตุ'
-      setContent(`ผิดพลาด: ${msg}`)
+      console.error('API Error:', err)
+      let errorMessage = 'เกิดข้อผิดพลาดไม่ทราบสาเหตุ'
+      
+      if (err.response) {
+        // เซิร์ฟเวอร์ตอบกลับแล้วแต่มีปัญหา
+        const status = err.response.status
+        const data = err.response.data
+        errorMessage = `เซิร์ฟเวอร์ตอบกลับด้วยสถานะ ${status}: ${data?.error || data?.message || 'ไม่มีข้อความข้อผิดพลาด'}`
+      } else if (err.request) {
+        // ส่งคำขอแล้วแต่ไม่ได้รับคำตอบ
+        errorMessage = 'ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ได้ กรุณาตรวจสอบการเชื่อมต่ออินเทอร์เน็ต'
+      } else {
+        // มีปัญหาอื่นๆ
+        errorMessage = err.message
+      }
+      
+      setContent(`ผิดพลาด: ${errorMessage}`)
     } finally {
       setIsAnalyzing(false)
     }
