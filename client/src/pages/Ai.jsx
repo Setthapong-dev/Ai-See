@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
-import { Camera } from 'lucide-react'
+import { Camera, AlertTriangle, X } from 'lucide-react'
 
 const Ai = () => {
   const [selectedImage, setSelectedImage] = useState(null)
   const [previewUrl, setPreviewUrl] = useState('')
   const [content, setContent] = useState('')
   const [isAnalyzing, setIsAnalyzing] = useState(false)
+  const [showServerSleepBanner, setShowServerSleepBanner] = useState(false)
 
   const fileToBase64 = (file) => {
     return new Promise((resolve, reject) => {
@@ -83,9 +84,14 @@ const Ai = () => {
       } else if (err.request) {
         // ส่งคำขอแล้วแต่ไม่ได้รับคำตอบ
         errorMessage = 'ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ได้ กรุณาตรวจสอบการเชื่อมต่ออินเทอร์เน็ต'
+        setShowServerSleepBanner(true)
       } else {
         // มีปัญหาอื่นๆ
         errorMessage = err.message
+      }
+      // ตรวจจับ timeout หรือ network error อื่นๆ
+      if (err.code === 'ECONNABORTED' || (typeof err.message === 'string' && err.message.toLowerCase().includes('network'))) {
+        setShowServerSleepBanner(true)
       }
       
       setContent(`ผิดพลาด: ${errorMessage}`)
@@ -99,6 +105,24 @@ const Ai = () => {
       <Header />
       <div className="min-h-screen bg-gradient-to-br from-yellow-50 to-orange-50 flex items-center justify-center py-8 md:mt-10">
         <div className="max-w-4xl mx-auto px-4 w-full">
+          {showServerSleepBanner && (
+            <div className="mb-4 rounded-lg border border-yellow-300 bg-yellow-50 text-yellow-800 p-4 shadow flex items-start justify-between">
+              <div className="flex items-start gap-3 pr-4">
+                <AlertTriangle className="w-5 h-5 mt-0.5 text-yellow-600" />
+                <div>
+                  <p className="font-semibold">ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ได้</p>
+                  <p className="text-sm">server sleep ลองอีกครั้งใน 5 นาที</p>
+                </div>
+              </div>
+              <button
+                aria-label="ปิดการแจ้งเตือน"
+                onClick={() => setShowServerSleepBanner(false)}
+                className="text-yellow-700 hover:text-yellow-900 p-1 rounded hover:bg-yellow-100 transition"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+          )}
           <div className="bg-white rounded-lg shadow-lg p-8">
             <h1 className="text-3xl font-bold text-center text-gray-800 mb-8">
               ตรวจสอบความสุกของมะม่วงด้วย AI
