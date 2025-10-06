@@ -16,19 +16,16 @@ const Footer = () => {
                 alt="AI-See Logo" 
                 className="w-8 h-8"
               />
-              <span className="text-xl font-bold">AI-See</span>
+              <span className="text-xl font-bold">MangoMind</span>
             </Link>
             <p className="text-gray-400 mb-6 max-w-md">
               แอปพลิเคชัน AI ที่ช่วยคัดผลไม้ด้วยการวิเคราะห์ภาพ
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-gray-300 transition duration-300">
+              <a href="https://github.com/Setthapong-dev/Ai-See" className="text-gray-400 hover:text-gray-300 transition duration-300" target="_blank" rel="noopener noreferrer">
                 <Github className="w-5 h-5" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-blue-400 transition duration-300">
-                <Twitter className="w-5 h-5" />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-red-400 transition duration-300">
+              <a href="mailto:setthapong.dev@gmail.com" className="text-gray-400 hover:text-red-400 transition duration-300">
                 <Mail className="w-5 h-5" />
               </a>
             </div>
@@ -92,7 +89,7 @@ const Footer = () => {
         {/* Bottom Section */}
         <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-400 text-sm">
-            © 2025 AI-See. สงวนลิขสิทธิ์ทั้งหมด
+            © 2025 MangoMind. สงวนลิขสิทธิ์ทั้งหมด
           </p>
           <div className="flex items-center mt-4 md:mt-0">
             <span className="text-gray-400 text-sm mr-2">สร้างด้วย</span>

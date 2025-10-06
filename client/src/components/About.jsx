@@ -36,7 +36,7 @@ const About = () => {
           {/* Content Section */}
           <div className="order-2 lg:order-1">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-4 sm:mb-6">
-              ทำไมต้องเลือก AI-See?
+              ทำไมต้องเลือก MangoMind?
             </h2>
             <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 leading-relaxed">
               AI-See เป็นแพลตฟอร์ม AI ที่พัฒนาขึ้นโดยทีมผู้เชี่ยวชาญชาวไทย 

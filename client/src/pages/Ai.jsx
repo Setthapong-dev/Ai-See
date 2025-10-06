@@ -152,7 +152,8 @@ const Ai = () => {
                   <button
                     onClick={handleSubmit}
                     disabled={!selectedImage || isAnalyzing}
-                    className="bg-gradient-to-r from-yellow-600 to-orange-600 hover:from-yellow-700 hover:to-orange-700 disabled:bg-gray-400 text-white px-8 py-3 rounded-lg font-semibold flex items-center gap-2 mx-auto transition-colors"
+                    className="bg-gradient-to-r from-yellow-600 to-orange-600 hover:from-yellow-700 hover:to-orange-700 disabled:bg-gray-400 text-white px-8 py-3 rounded-lg font-semibold flex items-center gap-2 mx-auto transition-colors 
+                    hover:cursor-pointer"
                   >
                     <Camera className="w-5 h-5" />
                     {isAnalyzing ? 'กำลังวิเคราะห์...' : 'วิเคราะห์ภาพ'}

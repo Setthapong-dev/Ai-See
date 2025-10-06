@@ -34,7 +34,7 @@ const Hero = () => {
 
         {/* Main Heading */}
         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-yellow-600 via-orange-600 to-amber-600 bg-clip-text text-transparent leading-tight">
-          AI-See
+          MangoMind
         </h1>
         
         {/* Subtitle */}
