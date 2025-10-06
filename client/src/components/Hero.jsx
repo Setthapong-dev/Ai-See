@@ -76,9 +76,14 @@ const Hero = () => {
             เริ่มใช้งานฟรี
             <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
           </Link>
-          <button className="w-full sm:w-auto bg-white/80 backdrop-blur-sm hover:bg-white text-gray-700 font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-xl transition duration-300 ease-in-out transform hover:scale-105 shadow-lg hover:shadow-xl border border-gray-200 text-sm sm:text-base">
+          <a
+            href="https://www.youtube.com/watch?v=zGaavA7cEqs"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full sm:w-auto bg-white/80 backdrop-blur-sm hover:bg-white text-gray-700 font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-xl transition duration-300 ease-in-out transform hover:scale-105 shadow-lg hover:shadow-xl border border-gray-200 text-sm sm:text-base"
+          >
             ดูตัวอย่าง
-          </button>
+          </a>
         </div>
 
         {/* Stats */}
