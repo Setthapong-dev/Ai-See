@@ -30,6 +30,11 @@ const Ai = () => {
     }
   }
 
+  // เลื่อนหน้าไปด้านบนสุดเมื่อเข้าหน้านี้
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
+
   useEffect(() => {
     return () => {
       if (previewUrl) {
