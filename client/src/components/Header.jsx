@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Home, Bot, Menu, X } from 'lucide-react'
+import { Home, Bot, Menu, X, LogIn, Database } from 'lucide-react'
 import AISeeLogo from '../assets/AI-See_logo.svg'
 
 const Header = () => {
@@ -70,6 +70,28 @@ const Header = () => {
               <Bot className="w-4 h-4 mr-2" />
               AI Dashboard
             </Link>
+            <Link 
+              to="/creations" 
+              className={`px-3 py-2 rounded-md text-sm font-medium transition duration-300 flex items-center ${
+                location.pathname === '/creations' 
+                  ? 'bg-yellow-100 text-yellow-700' 
+                  : 'text-gray-600 hover:text-yellow-600 hover:bg-yellow-50'
+              }`}
+            >
+              <Database className="w-4 h-4 mr-2" />
+              Creations
+            </Link>
+            <Link 
+              to="/login" 
+              className={`px-3 py-2 rounded-md text-sm font-medium transition duration-300 flex items-center ${
+                location.pathname === '/login' 
+                  ? 'bg-yellow-100 text-yellow-700' 
+                  : 'text-gray-600 hover:text-yellow-600 hover:bg-yellow-50'
+              }`}
+            >
+              <LogIn className="w-4 h-4 mr-2" />
+              Login
+            </Link>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -114,6 +136,30 @@ const Header = () => {
               >
                 <Bot className="w-4 h-4 mr-2" />
                 AI Dashboard
+              </Link>
+              <Link 
+                to="/creations" 
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={`px-3 py-2 rounded-md text-sm font-medium transition duration-300 flex items-center ${
+                  location.pathname === '/creations' 
+                    ? 'bg-yellow-100 text-yellow-700' 
+                    : 'text-gray-600 hover:text-yellow-600 hover:bg-yellow-50'
+                }`}
+              >
+                <Database className="w-4 h-4 mr-2" />
+                Creations
+              </Link>
+              <Link 
+                to="/login" 
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={`px-3 py-2 rounded-md text-sm font-medium transition duration-300 flex items-center ${
+                  location.pathname === '/login' 
+                    ? 'bg-yellow-100 text-yellow-700' 
+                    : 'text-gray-600 hover:text-yellow-600 hover:bg-yellow-50'
+                }`}
+              >
+                <LogIn className="w-4 h-4 mr-2" />
+                Login
               </Link>
             </div>
           </div>

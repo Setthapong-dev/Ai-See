@@ -46,6 +46,16 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
+                <Link to="/creations" className="text-gray-400 hover:text-white transition duration-300">
+                  Creations
+                </Link>
+              </li>
+              <li>
+                <Link to="/login" className="text-gray-400 hover:text-white transition duration-300">
+                  Login
+                </Link>
+              </li>
+              <li>
                 <a href="#" className="text-gray-400 hover:text-white transition duration-300">
                   เกี่ยวกับเรา
                 </a>
