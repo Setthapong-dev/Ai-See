@@ -1,15 +1,70 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
-import { Home, Bot, Menu, X } from 'lucide-react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Home, Bot, Menu, X, LogIn, Database, User, LogOut } from 'lucide-react'
 import AISeeLogo from '../assets/AI-See_logo.svg'
 
 const Header = () => {
   const location = useLocation()
+  const navigate = useNavigate()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false)
+  const [userData, setUserData] = useState(null)
+
+  // Decode JWT token to get user data
+  const decodeToken = (token) => {
+    try {
+      const base64Url = token.split('.')[1]
+      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/')
+      const jsonPayload = decodeURIComponent(
+        atob(base64)
+          .split('')
+          .map((c) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
+          .join('')
+      )
+      return JSON.parse(jsonPayload)
+    } catch (error) {
+      return null
+    }
+  }
+
+  // Check if user is logged in
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    if (token) {
+      const decoded = decodeToken(token)
+      if (decoded) {
+        setUserData({
+          email: decoded.email || 'user@example.com',
+          role: decoded.role || 'user'
+        })
+      }
+    } else {
+      setUserData(null)
+    }
+  }, [location.pathname])
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (isUserMenuOpen && !event.target.closest('.user-menu')) {
+        setIsUserMenuOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [isUserMenuOpen])
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen)
+  }
+
+  const handleLogout = () => {
+    localStorage.removeItem('token')
+    setUserData(null)
+    setIsUserMenuOpen(false)
+    navigate('/')
+    window.location.reload()
   }
 
   useEffect(() => {
@@ -70,6 +125,54 @@ const Header = () => {
               <Bot className="w-4 h-4 mr-2" />
               AI Dashboard
             </Link>
+            <Link 
+              to="/prediction" 
+              className={`px-3 py-2 rounded-md text-sm font-medium transition duration-300 flex items-center ${
+                location.pathname === '/prediction' 
+                  ? 'bg-yellow-100 text-yellow-700' 
+                  : 'text-gray-600 hover:text-yellow-600 hover:bg-yellow-50'
+              }`}
+            >
+              <Database className="w-4 h-4 mr-2" />
+              Prediction
+            </Link>
+            {userData ? (
+              <div className="relative user-menu">
+                <button
+                  onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+                  className="flex items-center justify-center w-10 h-10 rounded-full bg-yellow-500 hover:bg-yellow-600 text-white transition-colors cursor-pointer"
+                >
+                  <User className="w-5 h-5" />
+                </button>
+                {isUserMenuOpen && (
+                  <div className="absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-50">
+                    <div className="px-4 py-3 border-b border-gray-200">
+                      <p className="text-sm font-medium text-gray-900">{userData.email}</p>
+                      <p className="text-xs text-gray-500 mt-1">Role: {userData.role}</p>
+                    </div>
+                    <button
+                      onClick={handleLogout}
+                      className="w-full px-4 py-2 text-left text-sm text-red-600 hover:bg-red-50 flex items-center gap-2 transition-colors cursor-pointer"
+                    >
+                      <LogOut className="w-4 h-4" />
+                      ออกจากระบบ
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <Link 
+                to="/login" 
+                className={`px-3 py-2 rounded-md text-sm font-medium transition duration-300 flex items-center ${
+                  location.pathname === '/login' 
+                    ? 'bg-yellow-100 text-yellow-700' 
+                    : 'text-gray-600 hover:text-yellow-600 hover:bg-yellow-50'
+                }`}
+              >
+                <LogIn className="w-4 h-4 mr-2" />
+                Login
+              </Link>
+            )}
           </nav>
 
           {/* Mobile Menu Button */}
@@ -115,6 +218,51 @@ const Header = () => {
                 <Bot className="w-4 h-4 mr-2" />
                 AI Dashboard
               </Link>
+              <Link 
+                to="/prediction" 
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={`px-3 py-2 rounded-md text-sm font-medium transition duration-300 flex items-center ${
+                  location.pathname === '/prediction' 
+                    ? 'bg-yellow-100 text-yellow-700' 
+                    : 'text-gray-600 hover:text-yellow-600 hover:bg-yellow-50'
+                }`}
+              >
+                <Database className="w-4 h-4 mr-2" />
+                Prediction
+              </Link>
+              {userData ? (
+                <>
+                  <div className="px-3 py-2 border-t border-gray-200/10 mt-2 pt-2">
+                    <p className="text-xs text-gray-500 mb-1">Email:</p>
+                    <p className="text-sm font-medium text-gray-800">{userData.email}</p>
+                    <p className="text-xs text-gray-500 mt-2 mb-1">Role:</p>
+                    <p className="text-sm text-gray-600">{userData.role}</p>
+                  </div>
+                  <button
+                    onClick={() => {
+                      handleLogout()
+                      setIsMobileMenuOpen(false)
+                    }}
+                    className="px-3 py-2 rounded-md text-sm font-medium transition duration-300 flex items-center text-red-600 hover:bg-red-50 w-full cursor-pointer"
+                  >
+                    <LogOut className="w-4 h-4 mr-2" />
+                    ออกจากระบบ
+                  </button>
+                </>
+              ) : (
+                <Link 
+                  to="/login" 
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition duration-300 flex items-center ${
+                    location.pathname === '/login' 
+                      ? 'bg-yellow-100 text-yellow-700' 
+                      : 'text-gray-600 hover:text-yellow-600 hover:bg-yellow-50'
+                  }`}
+                >
+                  <LogIn className="w-4 h-4 mr-2" />
+                  Login
+                </Link>
+              )}
             </div>
           </div>
         )}
