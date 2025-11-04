@@ -3,17 +3,26 @@ import { HashRouter as Router, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import Ai from './pages/Ai'
 import Register from './pages/Register'
-import Creations from './pages/Creations'
+import Prediction from './pages/Prediction'
 import Login from './pages/Login'
+import ProtectedRoute from './components/ProtectedRoute'
+
 const App = () => {
   return (
     <Router>
       <div>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/ai" element={<Ai />} />
+          <Route 
+            path="/ai" 
+            element={
+              <ProtectedRoute>
+                <Ai />
+              </ProtectedRoute>
+            } 
+          />
           <Route path="/register" element={<Register />} />
-          <Route path="/creations" element={<Creations />} />
+          <Route path="/prediction" element={<Prediction />} />
           <Route path="/login" element={<Login />} />
         </Routes>
       </div>
