@@ -14,10 +14,24 @@ app.get('/', (req, res) => {
     res.send('Server2 is running');
 });
 app.post('/api/auth/register', async (req, res) => {
-    const { email, password } = req.body;
-    const password_hash = await bcrypt.hash(password, 10);
-    const user = await sql`INSERT INTO users (email, password_hash) VALUES (${email}, ${password_hash})`;
-    res.json(user);
+    try {
+        const { email, password } = req.body;
+        
+        if (!email || !password) {
+            return res.status(400).json({ message: 'Email and password are required' });
+        }
+        
+        const password_hash = await bcrypt.hash(password, 10);
+        const user = await sql`INSERT INTO users (email, password_hash) VALUES (${email}, ${password_hash}) RETURNING id, email, created_at`;
+        res.status(201).json({ message: 'Registration successful', user: user[0] });
+    } catch (error) {
+        // Check if error is due to unique constraint violation (duplicate email)
+        if (error.code === '23505' || error.message?.includes('unique') || error.message?.includes('duplicate')) {
+            return res.status(409).json({ message: 'Email already exists' });
+        }
+        console.error('Registration error:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
 });
 
 
