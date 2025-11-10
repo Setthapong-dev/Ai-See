@@ -79,7 +79,11 @@ app.post('/api/predict', authMiddleware, async (req, res) => {
     res.json({ message: 'Prediction successful', result });
 });
 
-
+app.get('/api/predict', authMiddleware, async (req, res) => {
+    const { email } = req.user;
+    const result = await sql`SELECT * FROM predictions WHERE email = ${email}`;
+    res.json(result);
+});
 
 const port = 3000;
 app.listen(port, () => {
