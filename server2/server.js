@@ -4,8 +4,13 @@ import 'dotenv/config';
 import bcrypt from 'bcrypt';
 import sql from './config/db.js';
 import jwt from 'jsonwebtoken';
+import { authMiddleware } from './middleware/auth.js';
+import connectCloudinary from './config/cloudinary.js';
+import cloudinary from 'cloudinary';
 
 const app = express();
+
+await connectCloudinary();
 
 app.use(cors());
 app.use(express.json());
@@ -65,6 +70,20 @@ app.post('/api/auth/login', async (req, res) => {
     res.json({ message: 'Login successful', token });
   });
   
+app.post('/api/predict', authMiddleware, async (req, res) => {
+    const { image_base64 } = req.body;
+    const { label } = req.body;
+    const { email } = req.user;
+    const {secure_url} = await cloudinary.uploader.upload(image_base64)
+    const result = await sql`INSERT INTO predictions (email, prediction, picture) VALUES (${email}, ${label}, ${secure_url})`;
+    res.json({ message: 'Prediction successful', result });
+});
+
+app.get('/api/predict', authMiddleware, async (req, res) => {
+    const { email } = req.user;
+    const result = await sql`SELECT * FROM predictions WHERE email = ${email}`;
+    res.json(result);
+});
 
 const port = 3000;
 app.listen(port, () => {

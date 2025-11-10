@@ -77,6 +77,21 @@ const Ai = () => {
       } else {
         setContent('ไม่พบผลลัพธ์จากเซิร์ฟเวอร์')
       }
+
+
+      const serverUrl = import.meta.env.VITE_BASE_URL || 'http://localhost:3000'
+
+      await axios.post(`${serverUrl}/api/predict`, {
+        image_base64: base64,
+        label: label,
+      }, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          'Content-Type': 'application/json',
+        },
+      });
+      
+
     } catch (err) {
       console.error('API Error:', err)
       let errorMessage = 'เกิดข้อผิดพลาดไม่ทราบสาเหตุ'
